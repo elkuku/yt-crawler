@@ -22,14 +22,21 @@
 
 <body>
 
-{#{% include ('_menu.html.twig') %}#}
+<header>
+{% include ('_menu.html.twig') %}
+</header>
 
 <main role="main" class="container-fluid">
-
     {% include ('_flash-messages.html.twig') %}
-
     {% block body %}{% endblock %}
-</main><!-- /.container -->
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="float-right">Made with <a href="https://symfony.com">Symfony</a></span>
+        <span class="text-muted">Place footer content here.</span>
+    </div>
+</footer>
 
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}

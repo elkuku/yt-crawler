@@ -16,5 +16,11 @@
         <li>Your controller at <code><a href="{{ '/home/elkuku/repos/symfony-playground-one/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/home/elkuku/repos/symfony-playground-one/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
+
+    {% if app.user %}
+    <h2>Hello {{ app.user.username }}</h2>
+    {% else %}
+    <p>You may <a href="{{ path('login') }}">log in</a> now...</p>
+    {% endif %}
 </div>
 {% endblock %}
