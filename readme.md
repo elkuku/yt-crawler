@@ -1,5 +1,7 @@
 # Symfony Playground "one"
 
+![Screenshot_20200902_090542](https://user-images.githubusercontent.com/33978/91994135-d902b080-ecfb-11ea-8da3-d35d2d987be4.png)
+
 * Symfony 5.1.*
 * Docker compose file for PostgreSQL
 * dev login form - prod google login
