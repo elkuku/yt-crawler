@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
+{% import '_/buttons.html.twig' as buttons %}
 
 {% block title %}New User{% endblock %}
 
 {% block body %}
+    <div class="float-right">
+        {{ buttons.back(path('user_index')) }}
+    </div>
+
     <h1>Create new User</h1>
 
     {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
 {% endblock %}
