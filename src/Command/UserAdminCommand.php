@@ -12,18 +12,25 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use UnexpectedValueException;
+use function Symfony\Component\String\u;
 
 class UserAdminCommand extends Command
 {
     protected static $defaultName = 'user-admin';// Type must be defined in base class :(
 
     private EntityManagerInterface $entityManager;
+    private ValidatorInterface $validator;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ValidatorInterface $validator
+    ) {
         parent::__construct();
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
     protected function configure(): void
@@ -53,7 +60,10 @@ class UserAdminCommand extends Command
         $users = $this->entityManager->getRepository(User::class)->findAll();
 
         $io->text(
-            sprintf('There are %d users in the database.', count($users))
+            sprintf(
+                '<fg=cyan>There are %d users in the database.</>',
+                count($users)
+            )
         );
 
         $helper = $this->getHelper('question');
@@ -62,12 +72,11 @@ class UserAdminCommand extends Command
             [
                 'List Users',
                 'Create User',
-                'Create Admin User',
                 'Edit User',
                 'Delete User',
                 'Exit',
             ],
-            5
+            4
         );
         $question->setErrorMessage('Choice %s is invalid.');
 
@@ -81,23 +90,11 @@ class UserAdminCommand extends Command
                     $this->showMenu($input, $output);
                     break;
                 case 'Create User':
-                    $email = $helper->ask(
-                        $input,
-                        $output,
-                        new Question('Email: ')
-                    );
-                    $this->createUser($email, 'ROLE_USER');
+                    $email = $this->askEmail($input, $output);
+                    $role = $this->askRole($input, $output);
+
+                    $this->createUser($email, $role);
                     $io->success('User created');
-                    $this->showMenu($input, $output);
-                    break;
-                case 'Create Admin User':
-                    $email = $helper->ask(
-                        $input,
-                        $output,
-                        new Question('Email: ')
-                    );
-                    $this->createUser($email, 'ROLE_ADMIN');
-                    $io->success('Admin User created');
                     $this->showMenu($input, $output);
                     break;
                 case 'Edit User':
@@ -105,7 +102,13 @@ class UserAdminCommand extends Command
                     $this->showMenu($input, $output);
                     break;
                 case 'Delete User':
-                    $io->text('Delete not implemented yet :(');
+                    $id = $helper->ask(
+                        $input,
+                        $output,
+                        new Question('User ID to delete: ')
+                    );
+                    $this->deleteUser($id);
+                    $io->success('User has been removed');
                     $this->showMenu($input, $output);
                     break;
                 case 'Exit':
@@ -143,14 +146,78 @@ class UserAdminCommand extends Command
         $table->render();
     }
 
+    private function askEmail(
+        InputInterface $input,
+        OutputInterface $output
+    ): string {
+        $email = null;
+        $io = new SymfonyStyle($input, $output);
+        do {
+            $email = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('Email: ')
+            );
+            if (!$email) {
+                $io->warning('e-mail is required :(');
+            } else {
+                $emailConstraint = new Email();
+                $emailConstraint->message = 'Invalid email address';
+
+                $errors = $this->validator->validate(
+                    $email,
+                    $emailConstraint
+                );
+
+                if (count($errors)) {
+                    $io->warning($errors[0]->getMessage());
+
+                    $email = null;
+                }
+            }
+        } while ($email === null);
+
+        return $email;
+    }
+
+    private function askRole(InputInterface $input, OutputInterface $output)
+    {
+        return $this->getHelper('question')->ask(
+            $input,
+            $output,
+            (new ChoiceQuestion(
+                'User role (ROLE_USER)',
+                [
+                    'ROLE_USER',
+                    'ROLE_ADMIN',
+                ],
+                0
+            ))
+                ->setErrorMessage('Choice %s is invalid.')
+        );
+    }
+
     private function createUser(string $email, string $role): void
     {
         $user = (new User())
             ->setEmail($email)
-            // ->setRoles($roles);
             ->setRole($role);
 
         $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
+    private function deleteUser(int $id): void
+    {
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(
+            ['id' => $id]
+        );
+
+        if (!$user) {
+            throw new UnexpectedValueException('User not found!');
+        }
+
+        $this->entityManager->remove($user);
         $this->entityManager->flush();
     }
 }
