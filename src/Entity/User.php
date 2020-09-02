@@ -14,6 +14,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, Serializable
 {
+    public const ROLES
+        = [
+            'User'  => 'ROLE_USER',
+            'Admin' => 'ROLE_ADMIN',
+        ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -74,7 +80,7 @@ class User implements UserInterface, Serializable
         return $this;
     }
 
-    public function getPassword():?string
+    public function getPassword(): ?string
     {
         return null;
     }

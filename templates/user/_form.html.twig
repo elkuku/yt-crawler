@@ -1,0 +1,9 @@
+{% import '_/buttons.html.twig' as buttons %}
+
+{{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    {{ buttons.ok(button_label|default('Save'|trans)) }}
+
+{{ form_end(form) }}
