@@ -13,7 +13,7 @@
 1. `composer install`
 1. `yarn`
 1. `yarn dev`
-1. `bin/start`
+1. `bin/start` - a custom startup script that runs `docker-compose up`, `symony server:start` and `symfony open:local`
 
 Use `symfony console user-admin` to create an admin user.
 
