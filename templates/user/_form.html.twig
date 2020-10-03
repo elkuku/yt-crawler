@@ -2,7 +2,17 @@
 
 {{ form_start(form) }}
 
-    {{ form_widget(form) }}
+
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_row(form.email) }}
+    </div>
+    <div class="col-sm-6">
+        {{ form_row(form.role) }}
+    </div>
+</div>
+
+{{ form_widget(form) }}
 
     {{ buttons.ok(button_label|default('Save'|trans)) }}
 

@@ -18,6 +18,13 @@
     </style>
 
     <div class="example-wrapper">
+        {% if app.user %}
+            <h2>Hello {{ app.user.username }}</h2>
+        {% else %}
+            <h4>
+                Use <code>symfony console user-admin</code> to create a user to <a href="{{ path('login') }}">log in</a>...
+            </h4>
+        {% endif %}
         <h1>Hello {{ controller_name }}! ✅</h1>
 
         This friendly message is coming from:
@@ -32,10 +39,5 @@
             </li>
         </ul>
 
-        {% if app.user %}
-            <h2>Hello {{ app.user.username }}</h2>
-        {% else %}
-            <p>You may <a href="{{ path('login') }}">log in</a> now...</p>
-        {% endif %}
     </div>
 {% endblock %}
