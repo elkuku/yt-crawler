@@ -82,8 +82,14 @@ class ControllerAccessTest extends WebTestCase
             $methods = $route->getMethods() ?: ['GET'];
             $path = str_replace('{id}', $defaultId, $route->getPath());
             foreach ($methods as $method) {
-                // echo "Testing: $method - $path".PHP_EOL;
                 $browser->request($method, $path);
+                echo sprintf(
+                        'Testing: %s - %s Expected: %s got: %s',
+                        $method,
+                        $path,
+                        $expectedStatusCode,
+                        $browser->getResponse()->getStatusCode()
+                    ).PHP_EOL;
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
