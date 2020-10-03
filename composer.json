@@ -93,7 +93,13 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "translate": [
+            "@translate-all"
+        ],
+        "translate-all": {
+            "en": "./bin/console translation:update --output-format=yaml --force en"
+        }
     },
     "conflict": {
         "symfony/symfony": "*"
