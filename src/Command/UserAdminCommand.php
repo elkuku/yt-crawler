@@ -15,7 +15,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use UnexpectedValueException;
-use function Symfony\Component\String\u;
 
 class UserAdminCommand extends Command
 {

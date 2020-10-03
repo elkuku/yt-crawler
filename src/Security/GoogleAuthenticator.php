@@ -49,8 +49,13 @@ class GoogleAuthenticator extends SocialAuthenticator
      */
     private $session;
 
-    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $em, UserRepository $userRepository, UrlGeneratorInterface $urlGenerator, SessionInterface $session)
-    {
+    public function __construct(
+        ClientRegistry $clientRegistry,
+        EntityManagerInterface $em,
+        UserRepository $userRepository,
+        UrlGeneratorInterface $urlGenerator,
+        SessionInterface $session
+    ) {
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
         $this->userRepository = $userRepository;
@@ -63,7 +68,7 @@ class GoogleAuthenticator extends SocialAuthenticator
      *
      * @return bool
      */
-    public function supports(Request $request):bool
+    public function supports(Request $request): bool
     {
         // continue ONLY if the current ROUTE matches the check ROUTE
         return $request->attributes->get('_route') === 'connect_google_check';
@@ -96,7 +101,9 @@ class GoogleAuthenticator extends SocialAuthenticator
         //		$email = $googleUser->getEmail();
 
         // 1) have they logged in with Google before? Easy!
-        $user = $this->userRepository->findOneBy(['email' => $googleUser->getEmail()]);
+        $user = $this->userRepository->findOneBy(
+            ['email' => $googleUser->getEmail()]
+        );
 
         if (!$user) {
             return null;
@@ -127,9 +134,16 @@ class GoogleAuthenticator extends SocialAuthenticator
      *
      * @return null|Response
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+    public function onAuthenticationSuccess(
+        Request $request,
+        TokenInterface $token,
+        $providerKey
+    ) {
+        if ($targetPath = $this->getTargetPath(
+            $request->getSession(),
+            $providerKey
+        )
+        ) {
             return new RedirectResponse($targetPath);
         }
 
@@ -142,9 +156,14 @@ class GoogleAuthenticator extends SocialAuthenticator
      *
      * @return null|Response
      */
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
-    {
-        $message = strtr($exception->getMessageKey(), $exception->getMessageData());
+    public function onAuthenticationFailure(
+        Request $request,
+        AuthenticationException $exception
+    ) {
+        $message = strtr(
+            $exception->getMessageKey(),
+            $exception->getMessageData()
+        );
         $this->session->getFlashBag()->add('danger', $message);
 
         return new RedirectResponse($this->urlGenerator->generate('login'));
@@ -161,10 +180,13 @@ class GoogleAuthenticator extends SocialAuthenticator
      *
      * @return RedirectResponse
      */
-    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
-    {
+    public function start(
+        Request $request,
+        AuthenticationException $authException = null
+    ): RedirectResponse {
         return new RedirectResponse(
-            '/connect/', // might be the site, where users choose their oauth provider
+            '/connect/',
+            // might be the site, where users choose their oauth provider
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }

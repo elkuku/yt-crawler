@@ -14,35 +14,25 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            // ->add('role')
             ->add(
                 'role',
                 ChoiceType::class,
                 [
-                    'choices'  =>
-                        User::ROLES
-                    //     [
-                    //     'Admin'       => 'ROLE_ADMIN',
-                    //     'Editor'      => 'ROLE_EDITOR',
-                    //     'Agent'       => 'ROLE_AGENT',
-                    //     'Intro Agent' => 'ROLE_INTRO_AGENT',
-                    //     'User'        => 'ROLE_USER',
-                    // ]
-        ,
-                    // 'multiple' => true,
-                    'attr'     => [
+                    'choices' => User::ROLES,
+                    'attr'    => [
                         'class'      => 'selectpicker',
                         'data-style' => 'btn-success',
                     ],
                 ]
-            )
-        ;
+            );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class,
+            ]
+        );
     }
 }

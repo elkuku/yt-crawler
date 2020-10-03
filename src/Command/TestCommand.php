@@ -17,13 +17,23 @@ class TestCommand extends Command
     {
         $this
             ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
+            ->addArgument(
+                'arg1',
+                InputArgument::OPTIONAL,
+                'Argument description'
+            )
+            ->addOption(
+                'option1',
+                null,
+                InputOption::VALUE_NONE,
+                'Option description'
+            );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
+    protected function execute(
+        InputInterface $input,
+        OutputInterface $output
+    ): int {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
 
