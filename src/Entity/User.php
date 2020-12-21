@@ -30,7 +30,7 @@ class User implements UserInterface, Serializable
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -68,7 +68,7 @@ class User implements UserInterface, Serializable
         return $this->email;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }

@@ -20,16 +20,11 @@ class UserAdminCommand extends Command
 {
     protected static $defaultName = 'user-admin';// Type must be defined in base class :(
 
-    private EntityManagerInterface $entityManager;
-    private ValidatorInterface $validator;
-
     public function __construct(
-        EntityManagerInterface $entityManager,
-        ValidatorInterface $validator
+        private EntityManagerInterface $entityManager,
+        private ValidatorInterface $validator
     ) {
         parent::__construct();
-        $this->entityManager = $entityManager;
-        $this->validator = $validator;
     }
 
     protected function configure(): void

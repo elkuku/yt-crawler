@@ -5,6 +5,7 @@ namespace App\Security;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -47,12 +48,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             && $request->isMethod('POST');
     }
 
-    public function getCredentials(Request $request)
+    #[ArrayShape(['email' => "mixed", 'csrf_token' => "mixed"])]
+    public function getCredentials(Request $request): array
     {
         $credentials = [
             'email' => $request->request->get('email'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
+
         $request->getSession()->set(
             Security::LAST_USERNAME,
             $credentials['email']
@@ -61,7 +64,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return $credentials;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): User
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -94,7 +97,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         Request $request,
         TokenInterface $token,
         $providerKey
-    ) {
+    ): RedirectResponse {
         if ($targetPath = $this->getTargetPath(
             $request->getSession(),
             $providerKey
