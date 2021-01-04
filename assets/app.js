@@ -10,3 +10,18 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import $ from 'jquery'
+
+import 'bootstrap'
+import 'bootswatch/dist/sketchy/bootstrap.min.css';
+
+require('open-iconic/font/css/open-iconic-bootstrap.css')
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
