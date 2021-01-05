@@ -1,6 +1,6 @@
 # Symfony Playground "one"
 
-![Screenshot_20200902_090542](https://user-images.githubusercontent.com/33978/91994135-d902b080-ecfb-11ea-8da3-d35d2d987be4.png)
+![screen-playground-one](https://user-images.githubusercontent.com/33978/103650052-70d40d80-4f2d-11eb-9fe8-9f72e8ded087.png)
 
 * Symfony 5.2.*
 * Docker compose file for PostgreSQL
