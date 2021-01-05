@@ -85,7 +85,7 @@
         "version": "2.1.24"
     },
     "fakerphp/faker": {
-        "version": "v1.12.1"
+        "version": "v1.13.0"
     },
     "guzzlehttp/guzzle": {
         "version": "7.2.0"
@@ -157,7 +157,7 @@
         ]
     },
     "nikic/php-parser": {
-        "version": "v4.10.3"
+        "version": "v4.10.4"
     },
     "ocramius/proxy-manager": {
         "version": "2.10.0"
@@ -640,9 +640,6 @@
     },
     "twig/twig": {
         "version": "v3.1.1"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.9.1"
