@@ -4,8 +4,8 @@
 
 * Symfony 5.2.*
 * Docker compose file for PostgreSQL
-* dev login form - prod google login
-* JQuery, Bootstrap and Bootswatch
+* `dev` login form <br/> `prod` google login
+* JQuery, Bootstrap and [Bootswatch](https://bootswatch.com/)
 * Prepared for Heroku
 
 ## Usage
