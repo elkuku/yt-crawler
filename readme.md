@@ -1,5 +1,5 @@
 # Symfony Playground "one"
-lalala
+
 ![screen-playground-one](https://user-images.githubusercontent.com/33978/103650387-edff8280-4f2d-11eb-84c8-486662e25bd5.png)
 
 * Symfony 5.2.*
