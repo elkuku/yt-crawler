@@ -7,6 +7,9 @@ use Exception;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Controller "smoke" test
+ */
 class ControllerAccessTest extends WebTestCase
 {
     private array $exceptions
@@ -80,13 +83,15 @@ class ControllerAccessTest extends WebTestCase
             $path = str_replace('{id}', $defaultId, $route->getPath());
             foreach ($methods as $method) {
                 $browser->request($method, $path);
-                echo sprintf(
-                        'Testing: %s - %s Expected: %s got: %s',
-                        $method,
-                        $path,
-                        $expectedStatusCode,
-                        $browser->getResponse()->getStatusCode()
-                    ).PHP_EOL;
+                if (false) {
+                    echo sprintf(
+                            'Testing: %s - %s Expected: %s got: %s',
+                            $method,
+                            $path,
+                            $expectedStatusCode,
+                            $browser->getResponse()->getStatusCode()
+                        ).PHP_EOL;
+                }
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
