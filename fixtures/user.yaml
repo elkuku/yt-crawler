@@ -1,4 +1,0 @@
-App\Entity\User:
-    user1:
-        email: 'user@example.com'
-        role: 'ROLE_AGENT'
