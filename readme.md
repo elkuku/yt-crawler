@@ -7,15 +7,23 @@
 * `dev` login form <br/> `prod` google login
 * JQuery, Bootstrap and [Bootswatch](https://bootswatch.com/)
 * Prepared for Heroku
+* Likes PHP 8 ;)
 
 ## Usage
 
-1. `composer install`
+1. `symfony composer install`
 1. `yarn`
 1. `yarn dev`
-1. `symfony console doctrine:migrations:migrate`
 1. `bin/start` - a custom startup script that runs `docker-compose up`, `symony server:start` and `symfony open:local`
+1. `symfony console doctrine:migrations:migrate`
+1. Use `symfony console user-admin` to create an admin user.
 
-Use `symfony console user-admin` to create an admin user.
+NOTE: ATM The symfony binary is used to ensure PHP 8!
+
+### Testing
+
+```shell
+make tests
+```
 
 Happy coding `=;)`
