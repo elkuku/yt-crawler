@@ -15,13 +15,13 @@ class ControllerAccessTest extends WebTestCase
     private array $exceptions
         = [
             'default'                  => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'login'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'connect_google_api_token' => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
         ];
 
@@ -62,40 +62,56 @@ class ControllerAccessTest extends WebTestCase
     {
         foreach ($routes as $routeName => $route) {
             $defaultId = 1;
-            $expectedStatusCode = 302;
+            $expectedStatusCodes = [];
             if (array_key_exists($routeName, $this->exceptions)) {
                 if (array_key_exists(
-                    'statusCode',
+                    'statusCodes',
                     $this->exceptions[$routeName]
                 )
                 ) {
-                    $expectedStatusCode = $this->exceptions[$routeName]['statusCode'];
-                }
-                if (array_key_exists('params', $this->exceptions[$routeName])) {
-                    $params = $this->exceptions[$routeName]['params'];
-                    if (array_key_exists('id', $params)) {
-                        $defaultId = $params['id'];
-                    }
+                    $expectedStatusCodes = $this->exceptions[$routeName]['statusCodes'];
                 }
             }
 
-            $methods = $route->getMethods() ?: ['GET'];
+            $methods = $route->getMethods();
+
+            if (!$methods) {
+                echo sprintf(
+                        'No methods set in controller "%s"',
+                        $route->getPath()
+                    ).PHP_EOL;
+                $methods = ['GET'];
+            }
+
             $path = str_replace('{id}', $defaultId, $route->getPath());
+            $out = false;
             foreach ($methods as $method) {
-                $browser->request($method, $path);
-                if (false) {
+                $expectedStatusCode = 302;
+                if (array_key_exists($method, $expectedStatusCodes)) {
+                    $expectedStatusCode = $expectedStatusCodes[$method];
+                }
+                if ($out) {
                     echo sprintf(
-                            'Testing: %s - %s Expected: %s got: %s',
-                            $method,
-                            $path,
-                            $expectedStatusCode,
+                        'Testing: %s - %s Expected: %s ... ',
+                        $method,
+                        $path,
+                        $expectedStatusCode,
+                    );
+                }
+
+                $browser->request($method, $path);
+
+                if ($out) {
+                    echo sprintf(
+                            ' got: %s',
                             $browser->getResponse()->getStatusCode()
                         ).PHP_EOL;
                 }
+
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
-                    sprintf('failed: %s (%s)', $routeName, $path)
+                    sprintf('failed: %s (%s) with method: %s', $routeName, $path, $method)
                 );
             }
         }

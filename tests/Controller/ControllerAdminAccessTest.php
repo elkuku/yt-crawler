@@ -16,25 +16,25 @@ class ControllerAdminAccessTest extends WebTestCase
     private array $exceptions
         = [
             'default'                  => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'login'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'user_index'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'user_new'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
             'user_show'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
             'user_edit'                    => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
             'connect_google_api_token' => [
-                'statusCode' => 200,
+                'statusCodes' => ['GET' => 200],
             ],
         ];
 
@@ -45,13 +45,10 @@ class ControllerAdminAccessTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $userRepository = static::$container->get(UserRepository::class);
-        $testUser = $userRepository->findOneByEmail('admin@example.com');
+        $user = static::$container->get(UserRepository::class)
+            ->findOneByEmail('admin@example.com');
 
-        // simulate $testUser being logged in
-        $client->loginUser($testUser);
-
-        $routeLoader = static::bootKernel()->getContainer()
+        $routeLoader = static::$container
             ->get('routing.loader');
 
         foreach (
@@ -68,6 +65,7 @@ class ControllerAdminAccessTest extends WebTestCase
                 continue;
             }
 
+            $client->loginUser($user);
             $routerClass = 'App\Controller\\'.basename(
                     $item->getBasename(),
                     '.php'
@@ -82,14 +80,14 @@ class ControllerAdminAccessTest extends WebTestCase
     {
         foreach ($routes as $routeName => $route) {
             $defaultId = 1;
-            $expectedStatusCode = 302;
+            $expectedStatusCodes = [];
             if (array_key_exists($routeName, $this->exceptions)) {
                 if (array_key_exists(
-                    'statusCode',
+                    'statusCodes',
                     $this->exceptions[$routeName]
                 )
                 ) {
-                    $expectedStatusCode = $this->exceptions[$routeName]['statusCode'];
+                    $expectedStatusCodes = $this->exceptions[$routeName]['statusCodes'];
                 }
                 if (array_key_exists('params', $this->exceptions[$routeName])) {
                     $params = $this->exceptions[$routeName]['params'];
@@ -101,21 +99,34 @@ class ControllerAdminAccessTest extends WebTestCase
 
             $methods = $route->getMethods() ?: ['GET'];
             $path = str_replace('{id}', $defaultId, $route->getPath());
+            $out = false;
             foreach ($methods as $method) {
-                $browser->request($method, $path);
-                if (false) {
+                $expectedStatusCode = 302;
+                if (array_key_exists($method, $expectedStatusCodes)) {
+                    $expectedStatusCode = $expectedStatusCodes[$method];
+                }
+                if ($out) {
                     echo sprintf(
-                            'Testing: %s - %s Expected: %s got: %s',
-                            $method,
-                            $path,
-                            $expectedStatusCode,
+                        'Testing: %s - %s Expected: %s ... ',
+                        $method,
+                        $path,
+                        $expectedStatusCode,
+                    );
+                }
+
+                $browser->request($method, $path);
+
+                if ($out) {
+                    echo sprintf(
+                            ' got: %s',
                             $browser->getResponse()->getStatusCode()
                         ).PHP_EOL;
                 }
+
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
-                    sprintf('failed: %s (%s)', $routeName, $path)
+                    sprintf('failed: %s (%s) with method: %s', $routeName, $path, $method)
                 );
             }
         }
