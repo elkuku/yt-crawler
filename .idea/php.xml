@@ -116,6 +116,33 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/dama/doctrine-test-bundle" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/neon" />
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/nette/robot-loader" />
+      <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/vendor/symplify/symfony-php-config" />
+      <path value="$PROJECT_DIR$/vendor/symplify/skipper" />
+      <path value="$PROJECT_DIR$/vendor/symplify/astral" />
+      <path value="$PROJECT_DIR$/vendor/symplify/console-color-diff" />
+      <path value="$PROJECT_DIR$/vendor/symplify/smart-file-system" />
+      <path value="$PROJECT_DIR$/vendor/symplify/autowire-array-parameter" />
+      <path value="$PROJECT_DIR$/vendor/symplify/set-config-resolver" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/symplify/composer-json-manipulator" />
+      <path value="$PROJECT_DIR$/vendor/symplify/easy-testing" />
+      <path value="$PROJECT_DIR$/vendor/symplify/rule-doc-generator" />
+      <path value="$PROJECT_DIR$/vendor/symplify/markdown-diff" />
+      <path value="$PROJECT_DIR$/vendor/symplify/package-builder" />
+      <path value="$PROJECT_DIR$/vendor/symplify/symplify-kernel" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/vendor/symplify/simple-php-doc-parser" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/symplify/php-config-printer" />
+      <path value="$PROJECT_DIR$/vendor/symplify/console-package-builder" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan-phpunit" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
