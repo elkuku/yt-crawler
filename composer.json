@@ -1,4 +1,6 @@
 {
+    "name": "elkuku/symfony-playground-one",
+    "description": "An opinionated symfony project template",
     "type": "project",
     "license": "proprietary",
     "require": {
@@ -12,7 +14,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
         "knpuniversity/oauth2-client-bundle": "^2.3",
-        "league/oauth2-google": "^3.0",
+        "league/oauth2-google": "^4.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.0",
         "symfony/apache-pack": "^1.0",
