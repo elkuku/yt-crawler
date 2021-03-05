@@ -21,16 +21,16 @@ class ControllerAdminAccessTest extends WebTestCase
             'login'                    => [
                 'statusCodes' => ['GET' => 200],
             ],
-            'user_index'                    => [
+            'user_index'               => [
                 'statusCodes' => ['GET' => 200],
             ],
-            'user_new'                    => [
+            'user_new'                 => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
-            'user_show'                    => [
+            'user_show'                => [
                 'statusCodes' => ['GET' => 200],
             ],
-            'user_edit'                    => [
+            'user_edit'                => [
                 'statusCodes' => ['GET' => 200, 'POST' => 200],
             ],
             'connect_google_api_token' => [
@@ -126,7 +126,12 @@ class ControllerAdminAccessTest extends WebTestCase
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
-                    sprintf('failed: %s (%s) with method: %s', $routeName, $path, $method)
+                    sprintf(
+                        'failed: %s (%s) with method: %s',
+                        $routeName,
+                        $path,
+                        $method
+                    )
                 );
             }
         }

@@ -63,14 +63,13 @@ class ControllerAccessTest extends WebTestCase
         foreach ($routes as $routeName => $route) {
             $defaultId = 1;
             $expectedStatusCodes = [];
-            if (array_key_exists($routeName, $this->exceptions)) {
-                if (array_key_exists(
+            if (array_key_exists($routeName, $this->exceptions)
+                && array_key_exists(
                     'statusCodes',
                     $this->exceptions[$routeName]
                 )
-                ) {
-                    $expectedStatusCodes = $this->exceptions[$routeName]['statusCodes'];
-                }
+            ) {
+                $expectedStatusCodes = $this->exceptions[$routeName]['statusCodes'];
             }
 
             $methods = $route->getMethods();
@@ -111,7 +110,12 @@ class ControllerAccessTest extends WebTestCase
                 self::assertEquals(
                     $expectedStatusCode,
                     $browser->getResponse()->getStatusCode(),
-                    sprintf('failed: %s (%s) with method: %s', $routeName, $path, $method)
+                    sprintf(
+                        'failed: %s (%s) with method: %s',
+                        $routeName,
+                        $path,
+                        $method
+                    )
                 );
             }
         }

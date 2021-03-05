@@ -10,10 +10,10 @@ class UserControllerTest extends WebTestCase
     public function testSomething(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $client->request('GET', '/');
 
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Hello DefaultController');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('h1', 'Hello DefaultController');
 
         $userRepository = static::$container->get(UserRepository::class);
 
@@ -21,7 +21,7 @@ class UserControllerTest extends WebTestCase
         $client->loginUser($testUser);
 
         $client->request('GET', '/');
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h4', 'Hello user@example.com');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('h4', 'Hello user@example.com');
     }
 }
