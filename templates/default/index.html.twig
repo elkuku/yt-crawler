@@ -18,16 +18,17 @@
     </style>
 
     <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
         {% if app.user %}
-            <h2>Hello {{ app.user.username }}</h2>
+            <h4>Hello <span class="alert alert-success">{{ app.user.username }}</span></h4>
         {% else %}
             <h4>
                 Use <code>symfony console user-admin</code> to create a user to <a href="{{ path('login') }}">log in</a>...
             </h4>
         {% endif %}
-        <h1>Hello {{ controller_name }}! ✅</h1>
 
-        <h2>PHP Version: {{ php_version }}</h2>
+        <h4>PHP Version: <code>{{ php_version }}</code></h4>
 
         This friendly message is coming from:
         <ul>
@@ -41,7 +42,7 @@
             </li>
         </ul>
 
-        <div data-controller="hello">Stimulus test</div>
+        <div data-controller="hello" class="alert alert-success">Stimulus test</div>
 
     </div>
 {% endblock %}
