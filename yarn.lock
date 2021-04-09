@@ -6390,6 +6390,8 @@ fsevents@~2.3.1:
     popper.js: ^1.16.1
     regenerator-runtime: ^0.13.8
     stimulus: ^2.0.0
+    stimulus-use: ^0.23.0
+    sweetalert2: ^10.15.5
     webpack-notifier: ^1.13.0
   languageName: unknown
   linkType: soft
@@ -6799,6 +6801,15 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"stimulus-use@npm:^0.23.0":
+  version: 0.23.0
+  resolution: "stimulus-use@npm:0.23.0"
+  peerDependencies:
+    stimulus: ">=1.1.1 <3"
+  checksum: 5e4570e71ecdd70bf01177674ce31690fbc2b3da6620b4f17340c534ad250ae023a5d12750b3d590260971ab6e5ae132796d7903d941828f9551058b5320145c
+  languageName: node
+  linkType: hard
+
 "stimulus@npm:^2.0.0":
   version: 2.0.0
   resolution: "stimulus@npm:2.0.0"
@@ -6981,6 +6992,13 @@ fsevents@~2.3.1:
   bin:
     svgo: ./bin/svgo
   checksum: e1659738423f625561fa23769d0a010f5ba08e83926ce697491153fa29a8cb2452fa5abb14c1bb489aa186718856f8768d4da870210a79302d47535c57c30d30
+  languageName: node
+  linkType: hard
+
+"sweetalert2@npm:^10.15.5":
+  version: 10.16.0
+  resolution: "sweetalert2@npm:10.16.0"
+  checksum: d6859224475889be750a65cf9229b12ade88c2a3e9084523c9d800598e78f729a763017ffcf8d333d170ca9d9f9c2766c5c3e86194f48bd6769aa058d3cfff74
   languageName: node
   linkType: hard
 

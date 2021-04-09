@@ -6,6 +6,7 @@
         "file-loader": "^6.2.0",
         "regenerator-runtime": "^0.13.8",
         "stimulus": "^2.0.0",
+        "stimulus-use": "^0.23.0",
         "webpack-notifier": "^1.13.0"
     },
     "license": "UNLICENSED",
@@ -21,6 +22,7 @@
         "bootswatch": "^4.6.0",
         "jquery": "^3.6.0",
         "open-iconic": "^1.1.1",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "sweetalert2": "^10.15.5"
     }
 }
