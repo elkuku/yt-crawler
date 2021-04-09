@@ -18,10 +18,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/', name: 'user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, Request $request): Response
     {
+        $template = $request->query->get('ajax')
+            ? '_list.html.twig'
+            : 'index.html.twig';
+
         return $this->render(
-            'user/index.html.twig',
+            'user/'.$template,
             [
                 'users' => $userRepository->findAll(),
             ]
@@ -43,12 +47,17 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
+        $template = $request->query->get('ajax')
+            ? '_form.html.twig'
+            : 'new.html.twig';
+
         return $this->render(
-            'user/new.html.twig',
+            'user/'.$template,
             [
                 'user' => $user,
                 'form' => $form->createView(),
-            ]
+            ],
+            new Response(null, $form->isSubmitted() ? 422 : 200)
         );
     }
 
@@ -75,12 +84,17 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
+        $template = $request->query->get('ajax')
+            ? '_form.html.twig'
+            : 'edit.html.twig';
+
         return $this->render(
-            'user/edit.html.twig',
+            'user/'.$template,
             [
                 'user' => $user,
                 'form' => $form->createView(),
-            ]
+            ],
+            new Response(null, $form->isSubmitted() ? 422 : 200)
         );
     }
 

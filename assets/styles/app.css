@@ -29,3 +29,7 @@ body > .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.modal-body button, .modal-body a {
+    display: none;
+}

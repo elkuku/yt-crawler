@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -29,6 +30,10 @@ class User implements UserInterface, Serializable
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private string $email;
 
@@ -101,10 +106,10 @@ class User implements UserInterface, Serializable
 
     public function unserialize($serialized): void
     {
-        list (
+        [
             $this->id,
             $this->email,
-            )
+        ]
             = unserialize($serialized);
     }
 }
