@@ -1,6 +1,6 @@
 import {Controller} from 'stimulus'
 import Swal from 'sweetalert2'
-import { useDispatch } from 'stimulus-use';
+import {useDispatch} from 'stimulus-use'
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -13,32 +13,24 @@ export default class extends Controller {
     }
 
     connect() {
-        useDispatch(this);
+        useDispatch(this)
     }
 
     onSubmit(event) {
         event.preventDefault()
         Swal.fire({
-            title: this.titleValue || null,// 'Are you sure?',
+            title: this.titleValue || null,
             text: this.textValue || null,
             icon: this.iconValue || null,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: this.confirmButtonTextValue || 'Yes',
-
             showLoaderOnConfirm: true,
             preConfirm: () => {
                 return this.submitForm()
-                // this.element.submit()
             },
         })
-
-        // .then((result) => {
-        // if (result.isConfirmed) {
-        //
-        // }
-        // })
     }
 
     async submitForm() {
@@ -51,15 +43,10 @@ export default class extends Controller {
         const response = await fetch(this.element.action, {
             method: this.element.method,
             body: new URLSearchParams(new FormData(this.element)),
-        });
+        })
 
         this.dispatch('async:submitted', {
             response,
         })
-
-        // return fetch(this.element.action, {
-        //     method: this.element.method,
-        //     body: new URLSearchParams(new FormData(this.element))
-        // })
     }
 }
