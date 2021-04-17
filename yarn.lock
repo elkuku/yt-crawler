@@ -1217,14 +1217,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@symfony/stimulus-bridge@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@symfony/stimulus-bridge@npm:2.0.2"
+"@symfony/stimulus-bridge@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@symfony/stimulus-bridge@npm:2.1.0"
   dependencies:
     acorn: ^8.0.5
+    loader-utils: ^2.0.0
+    schema-utils: ^3.0.0
   peerDependencies:
     stimulus: ^2.0
-  checksum: db601b25571278a07802e5bffd543f9b8a161306ce6063229447f7ca8f693cbc7d566722047018764ab874a312514ab3de8af8da5af6d3375db8286b543e881c
+  checksum: 3d34c1c88ebda916f855eee93fb51446fea056f1846702878e3a886e4ef83e4a07573d80971d6fdb72e41ebfd801840fed064042fe2eef1f407224d3b2bce386
   languageName: node
   linkType: hard
 
@@ -6379,7 +6381,7 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@symfony/stimulus-bridge": ^2.0.2
+    "@symfony/stimulus-bridge": ^2.1.0
     "@symfony/webpack-encore": ^1.1.2
     bootstrap: ^4.6.0
     bootswatch: ^4.6.0
@@ -6391,7 +6393,7 @@ fsevents@~2.3.1:
     regenerator-runtime: ^0.13.8
     stimulus: ^2.0.0
     stimulus-use: ^0.23.0
-    sweetalert2: ^10.15.5
+    sweetalert2: ^10.16.3
     webpack-notifier: ^1.13.0
   languageName: unknown
   linkType: soft
@@ -6995,10 +6997,10 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"sweetalert2@npm:^10.15.5":
-  version: 10.16.0
-  resolution: "sweetalert2@npm:10.16.0"
-  checksum: d6859224475889be750a65cf9229b12ade88c2a3e9084523c9d800598e78f729a763017ffcf8d333d170ca9d9f9c2766c5c3e86194f48bd6769aa058d3cfff74
+"sweetalert2@npm:^10.16.3":
+  version: 10.16.3
+  resolution: "sweetalert2@npm:10.16.3"
+  checksum: b8399d07d4ac6f821a5e87e0aa85705fc420043c0e48098e2e0ab6e4992b969d9dd5b9d87cb61cb2c3da2bf3a5a2ec375d3740b340c68ea0cfc026eae69aada3
   languageName: node
   linkType: hard
 
