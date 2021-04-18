@@ -11,6 +11,8 @@
 
 ## Usage
 
+0. Use the `bin/init` command **OR** execute the steps below
+
 1. `symfony composer install`
 1. `yarn`
 1. `yarn dev`
