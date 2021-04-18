@@ -11,7 +11,7 @@
 
 ## Usage
 
-0. Use the `bin/init` command **OR** execute the steps below
+0. Use the `bin/init` command **OR** execute the steps 1-5 below:
 
 1. `symfony composer install`
 1. `yarn`
