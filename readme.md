@@ -9,9 +9,9 @@
 * Prepared for Heroku
 * Likes PHP 8 ;)
 
-## Usage
+## Installation
 
-0. Use the `bin/init` command **OR** execute the steps 1-5 below:
+0. Use the `bin/install` command **OR** execute the steps 1-5 below:
 
 1. `symfony composer install`
 1. `yarn`
@@ -20,7 +20,9 @@
 1. `symfony console doctrine:migrations:migrate`
 1. Use `symfony console user-admin` to create an admin user.
 
-NOTE: ATM The symfony binary is used to ensure PHP 8!
+## Usage
+
+Use the `bin/start` and `bin/stop` scripts to start and stop the environment.
 
 ### Testing
 
