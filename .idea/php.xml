@@ -145,12 +145,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/uid" />
       <path value="$PROJECT_DIR$/vendor/danielstjules/stringy" />
       <path value="$PROJECT_DIR$/vendor/nette/caching" />
-      <path value="$PROJECT_DIR$/vendor/rector/rector-symfony" />
-      <path value="$PROJECT_DIR$/vendor/rector/rector-phpunit" />
-      <path value="$PROJECT_DIR$/vendor/rector/rector-doctrine" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector-installer" />
       <path value="$PROJECT_DIR$/vendor/rector/rector-nette" />
-      <path value="$PROJECT_DIR$/vendor/rector/rector-laravel" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector-doctrine" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector-phpunit" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector-symfony" />
       <path value="$PROJECT_DIR$/vendor/rector/rector-cakephp" />
+      <path value="$PROJECT_DIR$/vendor/rector/rector-laravel" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
