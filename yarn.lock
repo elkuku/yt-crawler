@@ -2516,10 +2516,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.10.1":
-  version: 3.10.1
-  resolution: "core-js@npm:3.10.1"
-  checksum: 5329c1bb03a9fa36d259b26180d9c4ad377a37867d2753b08a53738d41adb3b1193708abfaec4976d422140abcfabdc272584fb9ed16b1406a5c02fd122b8702
+"core-js@npm:^3.11.1":
+  version: 3.11.1
+  resolution: "core-js@npm:3.11.1"
+  checksum: c48324bea978e08f09efd38d75232cb2f0ac091f701b5df75789beabaa7fe401e11617c1abf9b1ff3aa6354154656580a0235af2527af5277af584613e9217cc
   languageName: node
   linkType: hard
 
@@ -6385,7 +6385,7 @@ fsevents@~2.3.1:
     "@symfony/webpack-encore": ^1.1.2
     bootstrap: ^4.6.0
     bootswatch: ^4.6.0
-    core-js: ^3.10.1
+    core-js: ^3.11.1
     file-loader: ^6.2.0
     jquery: ^3.6.0
     open-iconic: ^1.1.1
@@ -6393,7 +6393,7 @@ fsevents@~2.3.1:
     regenerator-runtime: ^0.13.8
     stimulus: ^2.0.0
     stimulus-use: ^0.23.0
-    sweetalert2: ^10.16.3
+    sweetalert2: ^10.16.6
     webpack-notifier: ^1.13.0
   languageName: unknown
   linkType: soft
@@ -6997,10 +6997,10 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"sweetalert2@npm:^10.16.3":
-  version: 10.16.3
-  resolution: "sweetalert2@npm:10.16.3"
-  checksum: b8399d07d4ac6f821a5e87e0aa85705fc420043c0e48098e2e0ab6e4992b969d9dd5b9d87cb61cb2c3da2bf3a5a2ec375d3740b340c68ea0cfc026eae69aada3
+"sweetalert2@npm:^10.16.6":
+  version: 10.16.6
+  resolution: "sweetalert2@npm:10.16.6"
+  checksum: 2f473ed95659768e5be0b4011f650806a33d40cd8f55cfdd13ada926808785e0fc0190652808eefb83a7ade70fba22ae1d5ae934ac7fedba0330241bc7697bc1
   languageName: node
   linkType: hard
 

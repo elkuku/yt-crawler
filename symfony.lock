@@ -241,6 +241,9 @@
     "rector/rector-doctrine": {
         "version": "0.10.2"
     },
+    "rector/rector-installer": {
+        "version": "0.10.1"
+    },
     "rector/rector-laravel": {
         "version": "0.10.1"
     },
