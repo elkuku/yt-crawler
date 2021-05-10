@@ -26,7 +26,7 @@ class User implements UserInterface, Serializable
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = 0;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -35,12 +35,17 @@ class User implements UserInterface, Serializable
      *     message = "The email '{{ value }}' is not a valid email."
      * )
      */
-    private string $email;
+    private string $email = '';
 
     /**
      * @ORM\Column(type="string", length=50)
      */
     private string $role = 'ROLE_USER';
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private ?string $googleId = '';
 
     public function eraseCredentials(): void
     {
@@ -111,5 +116,17 @@ class User implements UserInterface, Serializable
             $this->email,
         ]
             = unserialize($serialized);
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
     }
 }

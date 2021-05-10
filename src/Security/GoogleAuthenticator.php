@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
@@ -27,7 +26,7 @@ class GoogleAuthenticator extends SocialAuthenticator
 
     public function __construct(
         private ClientRegistry $clientRegistry,
-        private EntityManagerInterface $em,
+        private EntityManagerInterface $entityManager,
         private UserRepository $userRepository,
         private UrlGeneratorInterface $urlGenerator,
         private SessionInterface $session
@@ -36,26 +35,18 @@ class GoogleAuthenticator extends SocialAuthenticator
 
     public function supports(Request $request): bool
     {
-        // continue ONLY if the current ROUTE matches the check ROUTE
         return $request->attributes->get('_route') === 'connect_google_check';
     }
 
-    /**
-     * @return AccessToken|mixed
-     */
-    public function getCredentials(Request $request)
+    public function getCredentials(Request $request): AccessToken
     {
-        // this method is only called if supports() returns true
-
         return $this->fetchAccessToken($this->getGoogleClient());
     }
 
     /**
-     * @param mixed $credentials
-     *
-     * @return User|null|object|UserInterface
+     * @param AccessToken $credentials
      */
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): User
     {
         /** @var GoogleUser $googleUser */
         $googleUser = $this->getGoogleClient()
@@ -65,18 +56,27 @@ class GoogleAuthenticator extends SocialAuthenticator
 
         // 1) have they logged in with Google before? Easy!
         $user = $this->userRepository->findOneBy(
-            ['email' => $googleUser->getEmail()]
+            ['googleId' => $googleUser->getId()]
         );
 
         if (!$user) {
-            return null;
-            $user = new User();
+            // Fetch user by email - @todo remove
+            $user = $this->userRepository->findOneBy(
+                ['email' => $googleUser->getEmail()]
+            );
+            if (!$user) {
+                // Register new user
+                $user = (new User())
+                    ->setEmail($googleUser->getEmail())
+                    ->setGoogleId($googleUser->getId());
+            } else {
+                // Update existing users google id - @todo remove
+                $user->setGoogleId($googleUser->getId());
+            }
 
-            return $user;
-            $user->setEmail($googleUser->getEmail());
 
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
         }
 
         return $user;
