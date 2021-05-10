@@ -2,6 +2,9 @@
 #
 # Stop script
 #
+# License: WTFPL
+# Author: Nikolai Plath
+#
 
 check() {
 if ! command -v "$1" &> /dev/null
