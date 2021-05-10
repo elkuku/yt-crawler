@@ -21,14 +21,14 @@
         <h1>Hello {{ controller_name }}! ✅</h1>
 
         {% if app.user %}
-            <h4>Hello <span class="alert alert-success">{{ app.user.username }}</span></h4>
+            <h4>Welcome <span class="badge bg-success">{{ app.user.username }}</span></h4>
         {% else %}
             <h4>
                 Use <code>symfony console user-admin</code> to create a user to <a href="{{ path('login') }}">log in</a>...
             </h4>
         {% endif %}
 
-        <h4>PHP Version: <code>{{ php_version }}</code></h4>
+        <h4>We're using Symfony <code>{{ symfony_version }}</code> and PHP <code>{{ php_version }}</code></h4>
 
         This friendly message is coming from:
         <ul>
