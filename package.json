@@ -1,14 +1,14 @@
 {
     "devDependencies": {
+        "@popperjs/core": "^2.9.2",
         "@symfony/stimulus-bridge": "^2.1.0",
         "@symfony/webpack-encore": "^1.2.0",
-        "bootstrap": "^4.6.0",
-        "bootswatch": "^4.6.0",
+        "bootstrap": "^5.0.0",
+        "bootswatch": "^5.0.0",
         "core-js": "^3.12.1",
         "file-loader": "^6.2.0",
         "jquery": "^3.6.0",
         "open-iconic": "^1.1.1",
-        "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.8",
         "stimulus": "^2.0.0",
         "stimulus-use": "^0.23.0",
