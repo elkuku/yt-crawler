@@ -121,6 +121,9 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "ergebnis/json-printer": {
+        "version": "3.1.1"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
@@ -132,6 +135,9 @@
     },
     "guzzlehttp/psr7": {
         "version": "1.8.1"
+    },
+    "idiosyncratic/editorconfig": {
+        "version": "0.1.1"
     },
     "jean85/pretty-package-versions": {
         "version": "2.0.3"
@@ -174,9 +180,6 @@
     },
     "nette/neon": {
         "version": "v3.2.2"
-    },
-    "nette/robot-loader": {
-        "version": "v3.4.0"
     },
     "nette/utils": {
         "version": "v3.2.2"
@@ -232,6 +235,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "rector/extension-installer": {
+        "version": "0.10.2"
+    },
     "rector/rector": {
         "version": "0.9.33"
     },
@@ -241,14 +247,14 @@
     "rector/rector-doctrine": {
         "version": "0.10.2"
     },
-    "rector/rector-installer": {
-        "version": "0.10.1"
-    },
     "rector/rector-laravel": {
         "version": "0.10.1"
     },
     "rector/rector-nette": {
         "version": "0.10.5"
+    },
+    "rector/rector-nette-to-symfony": {
+        "version": "0.10.0"
     },
     "rector/rector-phpunit": {
         "version": "0.10.6"
@@ -273,6 +279,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "shanethehat/pretty-xml": {
+        "version": "1.0.2"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -510,9 +519,6 @@
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
     },
-    "symfony/polyfill-uuid": {
-        "version": "v1.22.1"
-    },
     "symfony/process": {
         "version": "v5.2.4"
     },
@@ -617,9 +623,6 @@
     "symfony/twig-pack": {
         "version": "v1.0.0"
     },
-    "symfony/uid": {
-        "version": "v5.2.6"
-    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -722,6 +725,9 @@
     },
     "symplify/symplify-kernel": {
         "version": "v9.2.15"
+    },
+    "tracy/tracy": {
+        "version": "v2.8.4"
     },
     "twig/extra-bundle": {
         "version": "v3.3.0"
