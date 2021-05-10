@@ -12,16 +12,27 @@ import './styles/app.css';
 import './bootstrap';
 
 import $ from 'jquery'
-
-import 'bootstrap'
+// window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+import '@popperjs/core'
+// import 'bootstrap'
 import 'bootswatch/dist/sketchy/bootstrap.min.css';
 
 require('open-iconic/font/css/open-iconic-bootstrap.css')
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+// $(function () {
+//     $('[data-toggle="tooltip"]').tooltip()
+// })
 
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
+// const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//     return new bootstrap.Tooltip(tooltipTriggerEl)
+// })
+
+// $(function () {
+//     $('[data-toggle="popover"]').popover()
+// })
+
+// const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+// const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+//     return new bootstrap.Popover(popoverTriggerEl)
+// })
