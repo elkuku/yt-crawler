@@ -13,7 +13,7 @@ class UserControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('h1', 'Hello DefaultController');
+        self::assertSelectorTextContains('h2', 'Hello DefaultController!');
 
         $userRepository = static::$container->get(UserRepository::class);
 
@@ -21,7 +21,8 @@ class UserControllerTest extends WebTestCase
         $client->loginUser($testUser);
 
         $client->request('GET', '/');
+
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('h4', 'Hello user@example.com');
+        self::assertSelectorTextContains('h4', 'Welcome user@example.com');
     }
 }

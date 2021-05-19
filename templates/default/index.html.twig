@@ -18,10 +18,10 @@
     </style>
 
     <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+        <h2>Hello {{ controller_name }}!</h2>
 
         {% if app.user %}
-            <h4>Welcome <span class="badge bg-success">{{ app.user.username }}</span></h4>
+            <h4 class="bg-success">Welcome {{ app.user.username }}</h4>
         {% else %}
             <h4>
                 Use <code>symfony console user-admin</code> to create a user to <a href="{{ path('login') }}">log in</a>...
