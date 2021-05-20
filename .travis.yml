@@ -1,0 +1,31 @@
+language: php
+php:
+  - 8.0
+  - nightly
+
+matrix:
+  fast_finish: true
+#  allow_failures:
+#    - php: nightly
+
+env:
+  global:
+    - PHPUNIT_FLAGS="-v"
+    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - composer install
+  - nvm install 12
+  - yarn install
+  - yarn dev
+
+script:
+  - SYMFONY_DEPRECATIONS_HELPER=disabled ./bin/phpunit $PHPUNIT_FLAGS
+#  - cat ./var/log/test.log
+
+#after_script:
+#  - ./bin/console TravisFinishedNofitication
