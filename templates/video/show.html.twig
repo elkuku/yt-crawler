@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Video{% endblock %}
+
+{% block body %}
+    <div class="float-end btn-group">
+        <a class="btn btn-outline-info btn-sm" href="{{ path('video_index') }}">back to list</a>
+
+        <a class="btn btn-outline-warning btn-sm" href="{{ path('video_edit', {'id': video.id}) }}">edit</a>
+
+        {{ include('video/_delete_form.html.twig') }}
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">ID: {{ video.id }}</div>
+        <div class="col-sm-2">YtId: {{ video.ytId }}</div>
+        <div class="col-sm-8"><h3>{{ video.title }}</h3></div>
+    </div>
+
+    <div class="ratio ratio-16x9" style="width: 40rem">
+        <iframe src="https://www.youtube.com/embed/{{ video.ytId }}?rel=0" allowfullscreen></iframe>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {{ video.description|nl2br }}
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

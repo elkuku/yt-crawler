@@ -1,64 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}YTCrawler!{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-
-    <div class="example-wrapper">
-        <h2>Hello {{ controller_name }}!</h2>
-
-        {% if app.user %}
-            <h4 class="bg-success">Welcome {{ app.user.username }}</h4>
-        {% else %}
-            <h4>
-                Use <code>symfony console user-admin</code> to create a user to <a href="{{ path('login') }}">log in</a>...
-            </h4>
-        {% endif %}
-
-        <h4>We're using Symfony <code>{{ symfony_version }}</code> and PHP <code>{{ php_version }}</code></h4>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code>
-                    <a href="{{ '/home/elkuku/repos/symfony-playground-one/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a>
-                </code>
-            </li>
-            <li>Your template at <code>
-                    <a href="{{ '/home/elkuku/repos/symfony-playground-one/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a>
-                </code>
-            </li>
-        </ul>
-
-        <div data-controller="hello" class="alert alert-success">Stimulus test</div>
-<!--
-        <hr>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-            Tooltip on top
-        </button>
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-            Popover on top
-        </button>
-        <hr>
--->
-
-        <div class="text-center">
-            <a href="http://www.wtfpl.net/">
-                <img src="{{ asset('build/images/wtfpl-logo-220x1601.png') }}" alt="WTFPL licensed">
-            </a>
-        </div>
-
+    <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/T0Jqdjbed40?autoplay=1&mute=1" allowfullscreen allow="autoplay"></iframe>
     </div>
 {% endblock %}

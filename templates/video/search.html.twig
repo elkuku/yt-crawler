@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+    <h1>Search</h1>
+
+    <form action="" method="get">
+        <input type="text" name="q" value="{{ q }}">
+        <button>Search</button>
+    </form>
+
+    {% if result %}
+        <h3>Result</h3>
+        {% if result.prevPageToken is defined %}
+            <a class="btn btn-outline-success"
+               href="{{ path('yt_search', {'q':q, 'pageToken':result.prevPageToken}) }}">Previous page</a>
+        {% endif %}
+        {% if result.nextPageToken is defined %}
+            <a class="btn btn-outline-success"
+               href="{{ path('yt_search', {'q':q, 'pageToken':result.nextPageToken}) }}">Next page</a>
+        {% endif %}
+        <hr>
+        {% if result.error is defined %}
+            error
+        {% else %}
+            Total results: {{ result.pageInfo.totalResults }} Items per page: {{ result.pageInfo.resultsPerPage }}
+<div class="row">
+            {% for item in result.items %}
+    <div class="col-sm-2">
+                <div class="card">
+                    {% if item.id.videoId is defined %}
+                        {# {{ dump(item) }} #}
+                        {# {{ dump(item.id) }} #}
+
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/{{ item.id.videoId }}?rel=0"
+                                    allowfullscreen></iframe>
+                        </div>
+                    {% else %}
+                        no id :(
+                    {% endif %}
+
+                </div>
+                </div>
+            {% endfor %}
+</div>
+        {% endif %}
+    {% endif %}
+
+
+    {% if result.prevPageToken is defined %}
+        <a class="btn btn-outline-success"
+           href="{{ path('yt_search', {'q':q, 'pageToken':result.prevPageToken}) }}">Previous page</a>
+    {% endif %}
+    {% if result.nextPageToken is defined %}
+        <a class="btn btn-outline-success"
+           href="{{ path('yt_search', {'q':q, 'pageToken':result.nextPageToken}) }}">Next page</a>
+    {% endif %}
+
+
+    {{ dump(result) }}
+{% endblock %}
+
+

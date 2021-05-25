@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Video index{% endblock %}
+
+{% block body %}
+    <a class="float-end btn btn-outline-success" href="{{ path('video_new') }}"><span class="oi oi-plus"></span></a>
+
+    <h1>Video index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>YtId</th>
+            <th>Genre</th>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.id }}</td>
+                <td>{{ video.ytId }}</td>
+                <td>{{ video.genre }}</td>
+                <td>{{ video.artist }}</td>
+                <td>
+                    <a href="{{ path('video_show', {'id': video.id}) }}">
+                        {{ video.title }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('video_edit', {'id': video.id}) }}">
+                        <span class="oi oi-pencil link-warning" title="Edit"></span>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

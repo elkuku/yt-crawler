@@ -15,7 +15,7 @@ import $ from 'jquery'
 // window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 import '@popperjs/core'
 // import 'bootstrap'
-import 'bootswatch/dist/sketchy/bootstrap.min.css';
+import 'bootswatch/dist/quartz/bootstrap.min.css';
 
 require('open-iconic/font/css/open-iconic-bootstrap.css')
 

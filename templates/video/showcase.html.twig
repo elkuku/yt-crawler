@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Video{% endblock %}
+
+{% block body %}
+    <h1>Video showcase</h1>
+
+    <div class="row">
+
+        {% for video in videos %}
+            <div class="col-sm-4">
+                <h5 class="card-header">{{ video.title }}</h5>
+                <div class="card-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/{{ video.ytId }}?rel=0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {% if video.description %}
+                    {% if video.description|length > 80 %}
+                        {{ video.description[:80] }}
+
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{ video.ytId }}" aria-expanded="false"
+                            aria-controls="collapse{{ video.ytId }}">
+                        ...
+                    </button>
+
+                    <div class="collapse" id="collapse{{ video.ytId }}">
+                        <div class="card card-body">
+                            {{ video.description }}
+                        </div>
+                    </div>
+                        {% else %}
+                            {{ video.description }}
+                {% endif %}
+                {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="col">
+                no records found.
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

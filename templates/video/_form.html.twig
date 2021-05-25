@@ -1,0 +1,27 @@
+<div
+        {{ stimulus_controller('ytupload', {
+            'urlId': path('parse_yt_url'),
+            'urlInfo': path('fetch_yt_info'),
+        }) }}
+        data-controller="ytupload">
+{{ form_start(form) }}
+    {{ form_label(form.yturl) }}
+    {{ form_errors(form.yturl) }}
+    {{ form_widget(form.yturl, {'attr': {
+        'class': 'yturl',
+        'data-action': 'ytupload#update'
+    }}) }}
+
+    {{ form_widget(form.title, {'attr': {
+        'data-ytupload-target': 'title'
+    }}) }}
+    {{ form_widget(form.ytId, {'attr': {
+        'data-ytupload-target': 'id'
+    }}) }}
+    {{ form_widget(form.description, {'attr': {
+        'data-ytupload-target': 'description'
+    }}) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>
